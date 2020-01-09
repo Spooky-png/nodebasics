@@ -1,8 +1,39 @@
 const express = require("express");
 const app = express();
-app.get('/', (request, response) => {
-   response.send("Wow this is way better");
-});
+const session = require('express-session');
+app.use(session({
+  secret: 'keyboardkitteh',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 }
+}))
+app.get('/', (req, res) => {
+    if(!req.session.id && !req.session.counter){
+        req.session.id = 1;
+        req.session.counter = 1;
+    }
+    else{
+        req.session.counter += 1;
+    }
+        res.render('counter', {counter: req.session.counter});
+    });
+    app.get('/double', (req, res) => {
+        if(!req.session.id && !req.session.counter){
+            req.session.id = 1;
+            req.session.counter = 1;
+        }
+        else{
+            req.session.counter *= 2;
+        }
+            res.render('counter', {counter: req.session.counter});
+        });
+    app.get('/reset', (req, res) => {
+        if(req.session.id){
+            req.session.counter = "Fine you jerk";
+        }
+            res.render('counter', {counter: req.session.counter});
+        });
+app.use(express.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/static"));
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
