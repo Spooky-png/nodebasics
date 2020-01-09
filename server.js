@@ -15,5 +15,14 @@ app.get("/users", (req, res) => {
     ];
     res.render('users', {users: users_array});
 })
+app.get("/cars", (req, res) => {
+    res.render('cars');
+})
+app.get("/cats", (req, res) => {
+    res.render('cats');
+})
+app.get("/cars/new", (req, res) => {
+    res.render('form');
+})
 
 app.listen(8000, () => console.log("listening on port 8000"));
