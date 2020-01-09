@@ -24,5 +24,23 @@ app.get("/cats", (req, res) => {
 app.get("/cars/new", (req, res) => {
     res.render('form');
 })
+app.get("/Catdude", (req, res) => {
+    var cat_array = [
+        {name: "Catdude", age: "5", sleeping_spots: ["Under the bed","In a sunbeam"], food: "Pizza"}, 
+    ];
+    res.render('details', {cats: cat_array});
+})
+app.get("/Catbro", (req, res) => {
+    var cat_array = [
+        {name: "Catbro", age: "180", sleeping_spots: ["Coffins","Graveyards"], food: "Darkness"}, 
+    ];
+    res.render('details', {cats: cat_array});
+})
+app.get("/Angie", (req, res) => {
+    var cat_array = [
+        {name: "Angie", age: "26", sleeping_spots: "Smothered by doggo", food: "Cheese and cheese accessories"}, 
+    ];
+    res.render('details', {cats: cat_array});
+})
 
 app.listen(8000, () => console.log("listening on port 8000"));
