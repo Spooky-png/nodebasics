@@ -16,3 +16,10 @@ img{
     margin:200px;
     background-color: burlywood;
 }
+.form-control{
+    width: 500px;
+}
+.form-group{
+    background-color: rgb(128, 132, 133);
+    padding: 20px;
+}
